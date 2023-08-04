@@ -17,14 +17,28 @@ const App = () => {
         console.error("error fetching artwork data", e);
       }
     };
-    fetchArtworkData();
 
-    console.log(artworkList);
+    const fetchAppProjects = async () => {
+      try {
+        const res = await axios.get("http://localhost:8000/api/app_projects/");
+        console.log(res.data);
+        setAppProjectList(res.data);
+      } catch (e) {
+        console.error("error fetching app list data", e);
+      }
+    };
+    fetchArtworkData();
+    fetchAppProjects();
+
+    // console.log(artworkList);
   }, []);
 
   return (
     <div className="App">
       {artworkList.map((piece) => (
+        <p>{piece.title}</p>
+      ))}
+      {appProjectList.map((piece) => (
         <p>{piece.title}</p>
       ))}
     </div>
