@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import { useState, useEffect } from "react";
+import "./App.css";
+import axios from "axios";
 
-function App() {
+const App = () => {
+  const [artworkList, setArtworkList] = useState([]);
+  const [appProjectList, setAppProjectList] = useState([]);
+
+  useEffect(() => {
+    const fetchArtworkData = async () => {
+      try {
+        const res = await axios.get("http://localhost:8000/api/artwork/");
+        console.log(res.data);
+        setArtworkList(res.data);
+      } catch (e) {
+        console.error("error fetching artwork data", e);
+      }
+    };
+    fetchArtworkData();
+
+    console.log(artworkList);
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {artworkList.map((piece) => (
+        <p>{piece.title}</p>
+      ))}
     </div>
   );
-}
+};
 
 export default App;
