@@ -1,6 +1,23 @@
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import Artwork, AppProject
+from .serializers import ArtworkSerializer, AppProjectSerializer
+
+class ArtworkListView(ListAPIView):
+    queryset = Artwork.objects.all()
+    serializer_class = ArtworkSerializer
+
+class ArtworkDetailView(RetrieveAPIView):
+    queryset = Artwork.objects.all()
+    serializer_class = ArtworkSerializer
+class AppProjectListView(ListAPIView):
+    queryset = AppProject.objects.all()
+    serializer_class = AppProjectSerializer
+
+class AppProjectDetailView(RetrieveAPIView):
+    queryset = AppProject.objects.all()
+    serializer_class = AppProjectSerializer
 
 def get_artwork(req):
     artwork = Artwork.objects.all()

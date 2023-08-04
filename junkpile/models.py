@@ -16,6 +16,8 @@ class AppProject(models.Model):
     description = models.TextField()
     year = models.IntegerField()
     technologies = models.TextField()
+    github_url = models.URLField(blank=True)
+    project_url = models.URLField(blank=True)
 
     def __str__(self):
         return self.title
