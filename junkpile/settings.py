@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'junkpile'
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': '@newPW007!',
         'HOST': 'localhost',
-        'PORT': '4000'
+        'PORT': '5432'
     }
 }
 
