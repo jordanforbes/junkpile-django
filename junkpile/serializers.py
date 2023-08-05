@@ -5,7 +5,7 @@ from .models import Artwork, ArtworkImage, AppProject, AppProjectImage
 class ArtworkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Artwork
-        fields = '__all__'
+        fields = ['id','title', 'medium','year','description','artwork_images']
 
 class ArtworkImageSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,7 +15,7 @@ class ArtworkImageSerializer(serializers.ModelSerializer):
 class AppProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = AppProject
-        fields = '__all__'
+        fields = ['id', 'title', 'description', 'app_project_images']
 
 class AppProjectImageSerializer(serializers.ModelSerializer):
     class Meta:
