@@ -12,15 +12,15 @@ class AppProjectImageSerializer(serializers.ModelSerializer):
         fields =['appProject','image','caption']
 
 class ArtworkSerializer(serializers.ModelSerializer):
-    artwork_images = ArtworkImageSerializer(many=True)
+    images = ArtworkImageSerializer(many=True)
     class Meta:
         model = Artwork
-        fields = ['id','title', 'medium','year','description','artwork_images']
+        fields = ['id','title', 'medium','year','description','images']
 
 class AppProjectSerializer(serializers.ModelSerializer):
-    app_project_images = AppProjectImageSerializer(many=True)
+    images = AppProjectImageSerializer(many=True)
     class Meta:
         model = AppProject
-        fields = ['id', 'title', 'description', 'app_project_images']
+        fields = ['id', 'title', 'description', 'images']
 
 
