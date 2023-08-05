@@ -3,16 +3,24 @@ from django.db import models
 class Artwork(models.Model):
     title = models.CharField(max_length = 100)
     year = models.IntegerField()
-    image = models.ImageField(upload_to='artwork/')
+    # image = models.ImageField(upload_to='artwork/')
     medium = models.CharField(max_length = 100)
     description = models.TextField()
 
     def __str__(self):
         return self.title
 
+class ArtworkImage(models.Model):
+    artwork = models.ForeignKey(Artwork, related_name="artwork_images", on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='artwork/')
+    caption = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+        return f'Image for {self.artwork.title}'
+
 class AppProject(models.Model):
     title = models.CharField(max_length = 100)
-    image = models.ImageField(upload_to='app_projects/')
+    # image = models.ImageField(upload_to='app_projects/')
     description = models.TextField()
     year = models.IntegerField()
     technologies = models.TextField()
@@ -21,3 +29,8 @@ class AppProject(models.Model):
 
     def __str__(self):
         return self.title
+
+class AppProjectImage(models.Model):
+    appProject = models.ForeignKey(AppProject, related_name="app_project_images", on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="app_projects/")
+    caption = models.CharField(max_length=100, blank=True)
