@@ -3,6 +3,7 @@ from django.db import models
 class Artwork(models.Model):
     title = models.CharField(max_length = 100)
     year = models.IntegerField()
+    # coverImage = models.ImageField(upload_to='artwork/')
     medium = models.CharField(max_length = 100)
     description = models.TextField()
 
@@ -11,6 +12,7 @@ class Artwork(models.Model):
 
 class AppProject(models.Model):
     title = models.CharField(max_length = 100)
+    # coverImage = models.ImageField(upload_to='app_projects/')
     description = models.TextField()
     year = models.IntegerField()
     technologies = models.TextField()
@@ -24,6 +26,7 @@ class ArtworkImage(models.Model):
     artwork = models.ForeignKey(Artwork, related_name="images", on_delete=models.CASCADE)
     image = models.ImageField(upload_to='artwork/')
     caption = models.CharField(max_length=100, blank=True)
+    cover = models.BooleanField(default=False)
 
     def __str__(self):
         return f'Image for {self.artwork.title}'
@@ -32,3 +35,4 @@ class AppProjectImage(models.Model):
     appProject = models.ForeignKey(AppProject, related_name="images", on_delete=models.CASCADE)
     image = models.ImageField(upload_to="app_projects/")
     caption = models.CharField(max_length=100, blank=True)
+    cover = models.BooleanField(default = False)
