@@ -1,23 +1,26 @@
 from rest_framework import serializers
 from .models import Artwork, ArtworkImage, AppProject, AppProjectImage
 
-
-class ArtworkSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Artwork
-        fields = ['id','title', 'medium','year','description','artwork_images']
-
 class ArtworkImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ArtworkImage
-        fields = '__all__'
-
-class AppProjectSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AppProject
-        fields = ['id', 'title', 'description', 'app_project_images']
+        fields = ['artwork', 'image', 'caption']
 
 class AppProjectImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = AppProjectImage
-        fields = '__all__'
+        fields =['appProject','image','caption']
+
+class ArtworkSerializer(serializers.ModelSerializer):
+    artwork_images = ArtworkImageSerializer(many=True)
+    class Meta:
+        model = Artwork
+        fields = ['id','title', 'medium','year','description','artwork_images']
+
+class AppProjectSerializer(serializers.ModelSerializer):
+    app_project_images = AppProjectImageSerializer(many=True)
+    class Meta:
+        model = AppProject
+        fields = ['id', 'title', 'description', 'app_project_images']
+
+

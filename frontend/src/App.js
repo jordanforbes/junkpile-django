@@ -42,19 +42,39 @@ const App = () => {
 
   return (
     <div className="App">
-      {appProjectList.map((app) => (
-        <>
-          <p>{app.title}</p>
-          {app.app_project_images.map((image) => (
-            <img
-              key={image.id}
-              src={`http://localhost:8000/app_projects/${image.image}`}
-              style={{ maxWidth: "200px" }}
-              alt="app project"
-            />
-          ))}
-        </>
-      ))}
+      <div className="container">
+        <h1>Jordan Forbes</h1>
+      </div>
+      <div className="appProjectList">
+        {appProjectList.map((app) => (
+          <>
+            <p>{app.title}</p>
+            {app.app_project_images.map((image) => (
+              <img
+                key={image.id}
+                src={image.image}
+                style={{ maxWidth: "200px" }}
+                alt="app project"
+              />
+            ))}
+          </>
+        ))}
+      </div>
+      <div className="artworkList">
+        {artworkList.map((piece) => (
+          <>
+            <p>{piece.title}</p>
+            {piece.artwork_images.map((image) => (
+              <img
+                key={image.id}
+                src={image.image}
+                style={{ maxWidth: "200px" }}
+                alt="app project"
+              />
+            ))}
+          </>
+        ))}
+      </div>
     </div>
   );
 };
