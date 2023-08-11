@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 import ProjectList from "./Components/ProjectList/ProjectList/ProjectList";
+import { Button, ButtonGroup } from "react-bootstrap";
 
 const App = () => {
   const [artworkList, setArtworkList] = useState([]);
   const [appProjectList, setAppProjectList] = useState([]);
+  const [displayMode, setDisplayMode] = useState("art");
 
   useEffect(() => {
     const fetchArtworkData = async () => {
@@ -30,13 +32,43 @@ const App = () => {
     fetchAppProjects();
   }, []);
 
+  const toggleArt = () => {
+    setDisplayMode("art");
+  };
+  const toggleApps = () => {
+    setDisplayMode("apps");
+  };
+
   return (
     <div className="App">
       <div className="container">
-        <h1>Jordan Forbes</h1>
+        <div className="row">
+          <h1>Jordan Forbes</h1>
+        </div>
+        <div className="row">
+          <ButtonGroup>
+            <Button
+              onClick={toggleArt}
+              className="mx-2 d-inline-block btn btn-primary float-left"
+            >
+              Art
+            </Button>
+            <Button
+              onClick={toggleApps}
+              className="mx-2 d-inline-block btn btn-primary  float-left"
+            >
+              Apps
+            </Button>
+          </ButtonGroup>
+        </div>
       </div>
-      <ProjectList projectList={appProjectList} />
-      <ProjectList projectList={artworkList} />
+      {displayMode === "apps" ? (
+        <ProjectList projectList={appProjectList} />
+      ) : displayMode === "art" ? (
+        <ProjectList projectList={artworkList} />
+      ) : (
+        "Error, no display mode"
+      )}
     </div>
   );
 };

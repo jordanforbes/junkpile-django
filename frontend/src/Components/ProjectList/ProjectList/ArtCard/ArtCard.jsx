@@ -4,7 +4,7 @@ const ArtCard = (props) => {
       <img
         key={props.image.id}
         src={props.image.image}
-        style={{ maxWidth: "200px" }}
+        style={{ maxWidth: "400px" }}
         alt="project"
       />
     </>
