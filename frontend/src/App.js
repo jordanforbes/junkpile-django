@@ -2,12 +2,15 @@ import logo from "./logo.svg";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectArtList,
-  selectAppList,
+  selectArt,
+  selectApp,
+  seletList,
+  selectDetail,
 } from "./features/viewSelectorSlice/viewSelectorSlice";
 import "./App.css";
 import axios from "axios";
 import ProjectList from "./Components/ProjectList/ProjectList/ProjectList/ProjectList";
+import ProjectDetails from "./Components/ProjectList/ProjectList/ProjectList/ArtCard/ProjectDetails/ProjectDetails";
 import { Button, ButtonGroup } from "react-bootstrap";
 
 const App = () => {
@@ -16,6 +19,7 @@ const App = () => {
 
   const dispatch = useDispatch();
   const viewState = useSelector((state) => state.viewSelector.view);
+  const modeState = useSelector((state) => state.viewSelector.mode);
 
   useEffect(() => {
     const fetchArtworkData = async () => {
@@ -40,10 +44,10 @@ const App = () => {
   }, []);
 
   const toggleArt = () => {
-    dispatch(selectArtList());
+    dispatch(selectArt());
   };
   const toggleApps = () => {
-    dispatch(selectAppList());
+    dispatch(selectApp());
   };
 
   return (
@@ -68,12 +72,18 @@ const App = () => {
             </Button>
           </ButtonGroup>
         </div>
-        {viewState === "AppList" ? (
-          <ProjectList projectList={appProjectList} />
-        ) : viewState === "ArtList" ? (
-          <ProjectList projectList={artworkList} />
+        {modeState === "List" ? (
+          viewState === "App" ? (
+            <ProjectList projectList={appProjectList} />
+          ) : viewState === "Art" ? (
+            <ProjectList projectList={artworkList} />
+          ) : (
+            "Error, no display view"
+          )
+        ) : modeState === "Detail" ? (
+          <ProjectDetails />
         ) : (
-          "Error, no display mode"
+          "Error, no mode set"
         )}
       </div>
     </div>

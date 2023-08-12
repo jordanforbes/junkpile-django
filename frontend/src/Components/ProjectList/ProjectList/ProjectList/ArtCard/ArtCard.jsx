@@ -6,15 +6,22 @@ import {
   setApp,
   getDetails,
 } from "../../../../../features/detailSelectorSlice/detailSelectorSlice";
+import {
+  selectArt,
+  selectApp,
+  selectDetail,
+} from "../../../../../features/viewSelectorSlice/viewSelectorSlice";
 
 const ArtCard = (props) => {
   const dispatch = useDispatch();
   const viewState = useSelector((state) => state.viewSelector.view);
+  const modeState = useSelector((state) => state.viewSelector.mode);
   const projectState = useSelector((state) => state.detailSelector);
   const setDetails = () => {
     viewState === "ArtList"
       ? dispatch(setArt(props.project))
       : dispatch(setApp(props.project));
+    dispatch(selectDetail());
   };
 
   useEffect(() => {

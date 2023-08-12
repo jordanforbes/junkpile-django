@@ -10,8 +10,6 @@ const ProjectList = (props) => {
 
   return (
     <div className="projectList">
-      <Button onClick={dispatch(reset())}>Reset</Button>
-
       {props.projectList.map((p) => (
         <div key={p.id} className="coverItem">
           <p>{p.title}</p>
