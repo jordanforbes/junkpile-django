@@ -7,8 +7,16 @@
   pointer-events: none;
 }
 
-.selectBtn {
+.headerName {
+  font-family: "lobster";
+  text-align: left;
   /* margin-left: 5px ;  */
+}
+
+@font-face {
+  font-family: "Lobster";
+  /* font-size: 10px; */
+  src: url("./fonts/Lobster-Regular.ttf") format("truetype");
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
