@@ -7,7 +7,7 @@ const initialState = {
   projectURL: false,
   description: false,
   technologies: false,
-  mediums: false,
+  medium: false,
   type: false,
   images: [],
 };
@@ -23,7 +23,7 @@ export const detailSelectorSlice = createSlice({
       state.projectURL = false;
       state.description = false;
       state.technologies = false;
-      state.mediums = false;
+      state.medium = false;
       state.type = false;
       state.images = [];
     },
@@ -32,7 +32,7 @@ export const detailSelectorSlice = createSlice({
       state.type = "art";
       state.title = action.payload.title;
       state.description = action.payload.description;
-      state.mediums = action.payload.mediums;
+      state.medium = action.payload.mediums;
       state.images = action.payload.images;
     },
     setApp: (state, action) => {
@@ -46,7 +46,7 @@ export const detailSelectorSlice = createSlice({
       state.projectURL = action.payload.projectURL
         ? action.payload.projectURL
         : false;
-      state.technologies = action.payload.technoliges;
+      state.technologies = action.payload.technologies;
       state.images = action.payload.images;
     },
     getDetails: (state) => {

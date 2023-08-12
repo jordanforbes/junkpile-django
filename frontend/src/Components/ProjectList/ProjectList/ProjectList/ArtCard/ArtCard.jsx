@@ -1,23 +1,27 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   reset,
   setArt,
+  setApp,
   getDetails,
 } from "../../../../../features/detailSelectorSlice/detailSelectorSlice";
 
 const ArtCard = (props) => {
   const dispatch = useDispatch();
-  const projectState = useSelector((state) => state);
-
+  const viewState = useSelector((state) => state.viewSelector.view);
+  const projectState = useSelector((state) => state.detailSelector);
   const setDetails = () => {
-    dispatch(setArt(props.project));
+    viewState === "ArtList"
+      ? dispatch(setArt(props.project))
+      : dispatch(setApp(props.project));
   };
 
   useEffect(() => {
-    console.log("!!!!!!details!!!!!");
+    console.log("PROJECTSTATE!!!!");
     console.log(projectState);
   }, [projectState]);
+
   return (
     <button onClick={setDetails}>
       <img

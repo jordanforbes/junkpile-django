@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import appSelectorReducer from "./features/appSelectorSlice/appSelectorSlice";
+import viewSelectorReducer from "./features/viewSelectorSlice/viewSelectorSlice";
 import detailSelectorReducer from "./features/detailSelectorSlice/detailSelectorSlice";
 
 export default configureStore({
   reducer: {
-    // appSelector: appSelectorReducer,
+    viewSelector: viewSelectorReducer,
     detailSelector: detailSelectorReducer,
   },
 });

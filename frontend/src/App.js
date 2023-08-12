@@ -1,5 +1,10 @@
 import logo from "./logo.svg";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectArtList,
+  selectAppList,
+} from "./features/viewSelectorSlice/viewSelectorSlice";
 import "./App.css";
 import axios from "axios";
 import ProjectList from "./Components/ProjectList/ProjectList/ProjectList/ProjectList";
@@ -8,8 +13,9 @@ import { Button, ButtonGroup } from "react-bootstrap";
 const App = () => {
   const [artworkList, setArtworkList] = useState([]);
   const [appProjectList, setAppProjectList] = useState([]);
-  const [displayMode, setDisplayMode] = useState("art");
-  const [detail, toggleDetail] = useState(false);
+
+  const dispatch = useDispatch();
+  const viewState = useSelector((state) => state.viewSelector.view);
 
   useEffect(() => {
     const fetchArtworkData = async () => {
@@ -34,10 +40,10 @@ const App = () => {
   }, []);
 
   const toggleArt = () => {
-    setDisplayMode("art");
+    dispatch(selectArtList());
   };
   const toggleApps = () => {
-    setDisplayMode("apps");
+    dispatch(selectAppList());
   };
 
   return (
@@ -62,9 +68,9 @@ const App = () => {
             </Button>
           </ButtonGroup>
         </div>
-        {displayMode === "apps" ? (
+        {viewState === "AppList" ? (
           <ProjectList projectList={appProjectList} />
-        ) : displayMode === "art" ? (
+        ) : viewState === "ArtList" ? (
           <ProjectList projectList={artworkList} />
         ) : (
           "Error, no display mode"
