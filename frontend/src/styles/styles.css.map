@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../Components/ProjectList/ProjectList.scss"],"names":[],"mappings":"AAEA;EACE;EACA;EACA;EACA;EACA;EACA;EACA","file":"styles.css"}
+{"version":3,"sourceRoot":"","sources":["../Components/ProjectList/ArtCard/ProjectDetails/ProjectDetails.scss","../Components/ProjectList/ProjectList.scss"],"names":[],"mappings":"AAAA;EACE;;;ACCF;EACE;EACA;EACA;EACA;EACA;EACA;EACA","file":"styles.css"}

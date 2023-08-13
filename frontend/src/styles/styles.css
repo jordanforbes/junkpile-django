@@ -1,3 +1,7 @@
+.carouselImg {
+  max-height: 500px !important;
+}
+
 .coverItem {
   float: left;
   display: block;

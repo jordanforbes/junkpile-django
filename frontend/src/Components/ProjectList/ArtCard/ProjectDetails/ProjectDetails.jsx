@@ -5,7 +5,7 @@ import { Carousel } from "react-bootstrap";
 
 const ProjectDetails = (props) => {
   const dispatch = useDispatch();
-  const viewState = useSelector((state) => state.viewSelector.view);
+  // const viewState = useSelector((state) => state.viewSelector.view);
   const projectState = useSelector((state) => state.detailSelector);
 
   const [cover, setCover] = useState("");
@@ -21,8 +21,6 @@ const ProjectDetails = (props) => {
         ? setCover(i.image)
         : setOtherImages([...otherImages, i.image]);
     });
-    console.log("COVERIMAGE");
-    console.log(cover);
     return cover;
   };
 
@@ -30,15 +28,19 @@ const ProjectDetails = (props) => {
     parseImages();
   }, []);
 
+  const ImageFormat = (props) => {
+    return <img className="carouselImg" src={props.src} alt={props.alt} />;
+  };
+
   const BuildCarousel = () => {
     return (
-      <Carousel>
+      <Carousel variant="dark">
         <Carousel.Item>
-          <img src={cover} alt="cover" />
+          <ImageFormat src={cover} alt={"cover"} />
         </Carousel.Item>
         {otherImages.map((i) => (
           <Carousel.Item>
-            <img src={i} alt="other" />
+            <ImageFormat src={i} alt={"other"} />
           </Carousel.Item>
         ))}
       </Carousel>
@@ -48,7 +50,12 @@ const ProjectDetails = (props) => {
   return (
     <>
       <h1>{projectState.title}</h1>
-      <BuildCarousel />
+      {otherImages[0] ? (
+        <BuildCarousel />
+      ) : (
+        <img className="carouselImg" src={cover} alt="cover" />
+      )}
+
       <p>{projectState.description}</p>
       <button onClick={handleClick}>back</button>
     </>
