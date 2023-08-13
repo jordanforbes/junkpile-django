@@ -28,19 +28,15 @@ const ProjectDetails = (props) => {
     parseImages();
   }, []);
 
-  const ImageFormat = (props) => {
-    return <img className="carouselImg" src={props.src} alt={props.alt} />;
-  };
-
   const BuildCarousel = () => {
     return (
       <Carousel variant="dark">
         <Carousel.Item>
-          <ImageFormat src={cover} alt={"cover"} />
+          <img className="carouselImg" src={cover} alt="cover" />
         </Carousel.Item>
         {otherImages.map((i) => (
           <Carousel.Item>
-            <ImageFormat src={i} alt={"other"} />
+            <img className="carouselImg" src={i} alt="other" />
           </Carousel.Item>
         ))}
       </Carousel>
