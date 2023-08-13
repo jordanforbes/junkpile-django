@@ -1,16 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  reset,
   setArt,
   setApp,
-  getDetails,
 } from "../../../features/detailSelectorSlice/detailSelectorSlice";
-import {
-  selectArt,
-  selectApp,
-  selectDetail,
-} from "../../../features/viewSelectorSlice/viewSelectorSlice";
+import { selectDetail } from "../../../features/viewSelectorSlice/viewSelectorSlice";
 
 const ArtCard = (props) => {
   const dispatch = useDispatch();
@@ -23,11 +17,6 @@ const ArtCard = (props) => {
       : dispatch(setApp(props.project));
     dispatch(selectDetail());
   };
-
-  useEffect(() => {
-    console.log("PROJECTSTATE!!!!");
-    console.log(projectState);
-  }, [projectState]);
 
   return (
     <button onClick={setDetails}>
