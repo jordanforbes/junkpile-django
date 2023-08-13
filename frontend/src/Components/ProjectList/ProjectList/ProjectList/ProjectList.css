@@ -1,9 +1,0 @@
-.coverItem {
-  float: left;
-  display: block;
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  overflow: hidden;
-  margin-right: 10px;
-}

@@ -1,16 +1,14 @@
-import logo from "./logo.svg";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectArt,
   selectApp,
-  seletList,
-  selectDetail,
 } from "./features/viewSelectorSlice/viewSelectorSlice";
 import "./App.css";
+import "./styles/styles.css";
 import axios from "axios";
-import ProjectList from "./Components/ProjectList/ProjectList/ProjectList/ProjectList";
-import ProjectDetails from "./Components/ProjectList/ProjectList/ProjectList/ArtCard/ProjectDetails/ProjectDetails";
+import ProjectList from "./Components/ProjectList/ProjectList";
+import ProjectDetails from "./Components/ProjectList/ArtCard/ProjectDetails/ProjectDetails";
 import { Button, ButtonGroup } from "react-bootstrap";
 
 const App = () => {
