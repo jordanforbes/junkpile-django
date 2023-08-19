@@ -3,5 +3,9 @@
     "react-bootstrap": "^2.8.0",
     "redux": "^4.2.1",
     "sass": "^1.65.1"
+  },
+  "devDependencies": {
+    "node-sass": "^9.0.0",
+    "sass-loader": "^13.3.2"
   }
 }

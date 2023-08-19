@@ -28,7 +28,7 @@ const ProjectDetails = (props) => {
     parseImages();
   }, []);
 
-  const BuildCarousel = () => {
+  const buildCarousel = () => {
     return (
       <Carousel variant="dark">
         <Carousel.Item>
@@ -45,15 +45,17 @@ const ProjectDetails = (props) => {
 
   return (
     <>
-      <h1>{projectState.title}</h1>
-      {otherImages[0] ? (
-        <BuildCarousel />
-      ) : (
-        <img className="carouselImg" src={cover} alt="cover" />
-      )}
+      <div className="container">
+        <h1>{projectState.title}</h1>
+        {otherImages[0] ? (
+          buildCarousel()
+        ) : (
+          <img className="carouselImg" src={cover} alt="cover" />
+        )}
 
-      <p>{projectState.description}</p>
-      <button onClick={handleClick}>back</button>
+        <p>{projectState.description}</p>
+        <button onClick={handleClick}>back</button>
+      </div>
     </>
   );
 };

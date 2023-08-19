@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectArt,
   selectApp,
+  selectList,
+  selectDetail,
 } from "./features/viewSelectorSlice/viewSelectorSlice";
 import "./App.css";
 import "./styles/styles.css";
 import axios from "axios";
 import ProjectList from "./Components/ProjectList/ProjectList";
 import ProjectDetails from "./Components/ProjectList/ArtCard/ProjectDetails/ProjectDetails";
+import Header from "./Components/Header/Header";
 import { Button, ButtonGroup } from "react-bootstrap";
 
 const App = () => {
@@ -43,47 +46,55 @@ const App = () => {
 
   const toggleArt = () => {
     dispatch(selectArt());
+    dispatch(selectList());
   };
   const toggleApps = () => {
     dispatch(selectApp());
+    dispatch(selectList());
   };
 
   return (
     <div className="App">
       <div className="container">
         <div className="row">
-          <h1 className="headerName">Jordan Forbes</h1>
+          <Header />
         </div>
         <div className="row">
-          <ButtonGroup>
-            <Button
-              onClick={toggleArt}
-              className="mx-2 d-inline-block btn btn-primary float-left"
-            >
-              Art
-            </Button>
-            <Button
-              onClick={toggleApps}
-              className="mx-2 d-inline-block btn btn-primary  float-left"
-            >
-              Apps
-            </Button>
-          </ButtonGroup>
+          <div className="col-md-3"></div>
+          <div className="col-md-6">
+            <ButtonGroup>
+              <Button
+                onClick={toggleArt}
+                className="mx-2 d-inline-block btn btn-primary float-left"
+              >
+                Art
+              </Button>
+              <Button
+                onClick={toggleApps}
+                className="mx-2 d-inline-block btn btn-primary  float-left"
+              >
+                Apps
+              </Button>
+            </ButtonGroup>
+          </div>
+          <div className="row">
+            {modeState === "List" ? (
+              viewState === "App" ? (
+                <ProjectList projectList={appProjectList} />
+              ) : viewState === "Art" ? (
+                <ProjectList projectList={artworkList} />
+              ) : (
+                "Error, no display view"
+              )
+            ) : modeState === "Detail" ? (
+              <ProjectDetails />
+            ) : (
+              "Error, no mode set"
+            )}
+          </div>
         </div>
-        {modeState === "List" ? (
-          viewState === "App" ? (
-            <ProjectList projectList={appProjectList} />
-          ) : viewState === "Art" ? (
-            <ProjectList projectList={artworkList} />
-          ) : (
-            "Error, no display view"
-          )
-        ) : modeState === "Detail" ? (
-          <ProjectDetails />
-        ) : (
-          "Error, no mode set"
-        )}
       </div>
+      <div className="col-md-3"></div>
     </div>
   );
 };
