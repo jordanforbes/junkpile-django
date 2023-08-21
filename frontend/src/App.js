@@ -17,7 +17,7 @@ import { Button, ButtonGroup } from "react-bootstrap";
 const App = () => {
   const [artworkList, setArtworkList] = useState([]);
   const [appProjectList, setAppProjectList] = useState([]);
-
+  const [data, setData] = useState([]);
   const dispatch = useDispatch();
   const viewState = useSelector((state) => state.viewSelector.view);
   const modeState = useSelector((state) => state.viewSelector.mode);
@@ -34,15 +34,36 @@ const App = () => {
 
     const fetchAppProjects = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/app_projects/");
-        setAppProjectList(res.data);
+        axios.get();
       } catch (e) {
         console.error("error fetching app list data", e);
       }
     };
-    fetchArtworkData();
-    fetchAppProjects();
+
+    const fetchData = () => {
+      axios
+        .get("/db/data.json")
+        .then((res) => {
+          setData(res.data);
+        })
+        .catch((e) => {
+          console.error("Error fetching data", e);
+        });
+    };
+    // fetchArtworkData();
+    // fetchAppProjects();
+    fetchData();
   }, []);
+
+  useEffect(() => {
+    console.log("data");
+    console.log(data.artwork);
+    // console.log(data.app_projects);
+    setAppProjectList(data.app_project);
+    // setArtworkList(data.artwork);
+    console.log("app project list", appProjectList);
+    console.log("artwork list", artworkList);
+  }, [data]);
 
   const toggleArt = () => {
     dispatch(selectArt());
