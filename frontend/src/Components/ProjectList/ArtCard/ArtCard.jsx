@@ -20,12 +20,12 @@ const ArtCard = (props) => {
 
   return (
     <button onClick={setDetails}>
-      <img
+      {/* <img
         key={props.image.id}
         src={props.image.image}
         style={{ maxWidth: "400px" }}
         alt="project"
-      />
+      /> */}
     </button>
   );
 };

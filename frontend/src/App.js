@@ -6,6 +6,7 @@ import {
   selectList,
   selectDetail,
 } from "./features/viewSelectorSlice/viewSelectorSlice";
+import { populateList } from "./features/projectListSelectorSlice/projectListSelectorSlice";
 import "./App.css";
 import "./styles/styles.css";
 import axios from "axios";
@@ -23,23 +24,6 @@ const App = () => {
   const modeState = useSelector((state) => state.viewSelector.mode);
 
   useEffect(() => {
-    const fetchArtworkData = async () => {
-      try {
-        const res = await axios.get("http://localhost:8000/api/artwork/");
-        setArtworkList(res.data);
-      } catch (e) {
-        console.error("error fetching artwork data", e);
-      }
-    };
-
-    const fetchAppProjects = async () => {
-      try {
-        axios.get();
-      } catch (e) {
-        console.error("error fetching app list data", e);
-      }
-    };
-
     const fetchData = () => {
       axios
         .get("/db/data.json")
@@ -50,19 +34,14 @@ const App = () => {
           console.error("Error fetching data", e);
         });
     };
-    // fetchArtworkData();
-    // fetchAppProjects();
     fetchData();
   }, []);
 
   useEffect(() => {
-    console.log("data");
-    console.log(data.artwork);
-    // console.log(data.app_projects);
-    setAppProjectList(data.app_project);
-    // setArtworkList(data.artwork);
-    console.log("app project list", appProjectList);
-    console.log("artwork list", artworkList);
+    console.log("data", data);
+    if (data) {
+      dispatch(populateList(data));
+    }
   }, [data]);
 
   const toggleArt = () => {
@@ -72,6 +51,21 @@ const App = () => {
   const toggleApps = () => {
     dispatch(selectApp());
     dispatch(selectList());
+  };
+
+  const DisplayProjects = (props) => {
+    const appList = useSelector(
+      (state) => state.projectListSelector.app_projects
+    );
+    const artList = useSelector((state) => state.projectListSelector.artwork);
+    const viewState = useSelector((state) => state.viewSelector.view);
+    const modeState = useSelector((state) => state.viewSelector.mode);
+
+    return (
+      <>
+        <div>display projects</div>
+      </>
+    );
   };
 
   return (
@@ -99,19 +93,7 @@ const App = () => {
             </ButtonGroup>
           </div>
           <div className="row">
-            {modeState === "List" ? (
-              viewState === "App" ? (
-                <ProjectList projectList={appProjectList} />
-              ) : viewState === "Art" ? (
-                <ProjectList projectList={artworkList} />
-              ) : (
-                "Error, no display view"
-              )
-            ) : modeState === "Detail" ? (
-              <ProjectDetails />
-            ) : (
-              "Error, no mode set"
-            )}
+            <ProjectList />
           </div>
         </div>
       </div>

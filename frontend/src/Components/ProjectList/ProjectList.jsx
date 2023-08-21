@@ -1,17 +1,27 @@
 import ArtCard from "./ArtCard/ArtCard.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 
 const ProjectList = (props) => {
-  console.log(props.projectList);
+  const appList = useSelector(
+    (state) => state.projectListSelector.app_projects
+  );
+  const artList = useSelector((state) => state.projectListSelector.artwork);
+  const viewState = useSelector((state) => state.viewSelector.view);
+  const modeState = useSelector((state) => state.viewSelector.mode);
 
+  const projectList =
+    viewState === "Art" ? artList : viewState === "App" ? appList : [];
+
+  useEffect(() => {
+    projectList.map((p) => {
+      console.log(p.title);
+    });
+  }, [projectList]);
   return (
     <div className="projectList">
-      {props.projectList.map((p) => (
-        <div key={p.id} className="coverItem">
-          <p>{p.title}</p>
-          {p.images.map((i) =>
-            i.cover ? <ArtCard image={i} project={p} /> : null
-          )}
-        </div>
+      {projectList.map((p) => (
+        <p>{p.title}</p>
       ))}
     </div>
   );

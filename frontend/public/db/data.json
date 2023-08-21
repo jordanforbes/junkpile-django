@@ -1,6 +1,7 @@
 {
   "app_project": [
     {
+      "pid": 0,
       "id": "power-gord",
       "category": "app_project",
       "title": "Power Gord",
@@ -31,6 +32,7 @@
   ],
   "artwork": [
     {
+      "pid": 0,
       "id": "bloo",
       "category": "artwork",
       "title": "Bloo",
