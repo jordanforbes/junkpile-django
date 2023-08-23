@@ -5,12 +5,14 @@ import {
   selectApp,
   selectList,
   selectDetail,
+  selectAdmin,
 } from "./features/viewSelectorSlice/viewSelectorSlice";
 import { populateList } from "./features/projectListSelectorSlice/projectListSelectorSlice";
 import "./App.css";
 import "./styles/styles.css";
 import axios from "axios";
 import ProjectList from "./Components/ProjectList/ProjectList";
+import Admin from "./Components/Admin/Admin";
 import ProjectDetails from "./Components/ProjectList/ArtCard/ProjectDetails/ProjectDetails";
 import Header from "./Components/Header/Header";
 import { Button, ButtonGroup } from "react-bootstrap";
@@ -53,6 +55,8 @@ const App = () => {
     dispatch(selectList());
   };
 
+  const toggleAdmin = () => {};
+
   const DisplayProjects = (props) => {
     const appList = useSelector(
       (state) => state.projectListSelector.app_projects
@@ -93,7 +97,7 @@ const App = () => {
             </ButtonGroup>
           </div>
           <div className="row">
-            <ProjectList />
+            {viewState === "Admin" ? <Admin /> : <ProjectList />}
           </div>
         </div>
       </div>

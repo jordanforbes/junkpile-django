@@ -40,13 +40,8 @@
       "description": "<p>Oil Painting</p>",
       "medium": ["oil"],
       "images": {
-        "cover": "pggridactivemobile.png",
-        "other": [
-          "pggrid.png",
-          "pglarge.png",
-          "pgthumb.jpg",
-          "pgscreenshot.png"
-        ]
+        "cover": "bloo.png",
+        "other": []
       }
     }
   ]

@@ -21,9 +21,12 @@ export const viewSelectorSlice = createSlice({
     selectApp: (state) => {
       state.view = "App";
     },
+    selectAdmin: (state) => {
+      state.view = "Admin";
+    },
   },
 });
 
-export const { selectArt, selectApp, selectList, selectDetail } =
+export const { selectArt, selectApp, selectList, selectDetail, selectAdmin } =
   viewSelectorSlice.actions;
 export default viewSelectorSlice.reducer;

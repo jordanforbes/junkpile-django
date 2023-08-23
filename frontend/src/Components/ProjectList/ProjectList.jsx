@@ -8,21 +8,18 @@ const ProjectList = (props) => {
   );
   const artList = useSelector((state) => state.projectListSelector.artwork);
   const viewState = useSelector((state) => state.viewSelector.view);
-  const modeState = useSelector((state) => state.viewSelector.mode);
+  // const modeState = useSelector((state) => state.viewSelector.mode);
 
   const projectList =
     viewState === "Art" ? artList : viewState === "App" ? appList : [];
 
-  useEffect(() => {
-    projectList.map((p) => {
-      console.log(p.title);
-    });
-  }, [projectList]);
   return (
     <div className="projectList">
-      {projectList.map((p) => (
-        <p>{p.title}</p>
-      ))}
+      {projectList ? (
+        projectList.map((p) => <p>{p.title}</p>)
+      ) : (
+        <p>not loaded</p>
+      )}
     </div>
   );
 };
