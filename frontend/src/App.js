@@ -21,6 +21,8 @@ const App = () => {
   const [artworkList, setArtworkList] = useState([]);
   const [appProjectList, setAppProjectList] = useState([]);
   const [data, setData] = useState([]);
+  const [artworkData, setArtworkData] = useState([]);
+  const [appProjectData, setAppProjectData] = useState([]);
   const dispatch = useDispatch();
   const viewState = useSelector((state) => state.viewSelector.view);
   const modeState = useSelector((state) => state.viewSelector.mode);
@@ -28,9 +30,20 @@ const App = () => {
   useEffect(() => {
     const fetchData = () => {
       axios
-        .get("/db/data.json")
+        .get("http://localhost:8000/api/artwork/")
         .then((res) => {
-          setData(res.data);
+          console.log("artwork", res.data);
+          setArtworkData(res.data);
+        })
+        .catch((e) => {
+          console.error("Error fetching data", e);
+        });
+
+      axios
+        .get("http://localhost:8000/api/app_projects/")
+        .then((res) => {
+          console.log("app project", res.data);
+          setAppProjectData(res.data);
         })
         .catch((e) => {
           console.error("Error fetching data", e);
@@ -38,6 +51,14 @@ const App = () => {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    setData({
+      app_project: appProjectData,
+      artwork: artworkData,
+    });
+    console.log("full data", data);
+  }, [artworkData, appProjectData]);
 
   useEffect(() => {
     console.log("data", data);

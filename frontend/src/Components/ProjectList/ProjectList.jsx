@@ -12,7 +12,9 @@ const ProjectList = (props) => {
 
   const projectList =
     viewState === "Art" ? artList : viewState === "App" ? appList : [];
-
+  useEffect(() => {
+    console.log("artlist", artList);
+  });
   return (
     <div className="projectList">
       {projectList ? (
