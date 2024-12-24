@@ -18,15 +18,17 @@ import Header from "./Components/Header/Header";
 import { Button, ButtonGroup } from "react-bootstrap";
 
 const App = () => {
-  const [artworkList, setArtworkList] = useState([]);
-  const [appProjectList, setAppProjectList] = useState([]);
+  // const [artworkList, setArtworkList] = useState([]);
+  // const [appProjectList, setAppProjectList] = useState([]);
   const [data, setData] = useState([]);
   const [artworkData, setArtworkData] = useState([]);
   const [appProjectData, setAppProjectData] = useState([]);
   const dispatch = useDispatch();
   const viewState = useSelector((state) => state.viewSelector.view);
   const modeState = useSelector((state) => state.viewSelector.mode);
+  const [mode, setMode] = useState([]);
 
+  // grab data from api and set it to the state
   useEffect(() => {
     const fetchData = () => {
       axios
@@ -93,6 +95,20 @@ const App = () => {
     );
   };
 
+  const checkMode = () => {
+    if (viewState === "Admin") {
+      setMode(<Admin />);
+    } else if (modeState === "List") {
+      setMode(<ProjectList />);
+    } else if (modeState === "Detail") {
+      setMode(<ProjectDetails />);
+    }
+  };
+
+  useEffect(() => {
+    checkMode();
+  }, [mode]);
+
   return (
     <div className="App">
       <div className="container">
@@ -117,9 +133,7 @@ const App = () => {
               </Button>
             </ButtonGroup>
           </div>
-          <div className="row">
-            {viewState === "Admin" ? <Admin /> : <ProjectList />}
-          </div>
+          <div className="row">{mode}</div>
         </div>
       </div>
       <div className="col-md-3"></div>

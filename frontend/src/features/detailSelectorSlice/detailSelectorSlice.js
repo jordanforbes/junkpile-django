@@ -28,6 +28,7 @@ export const detailSelectorSlice = createSlice({
       state.images = [];
     },
     setArt: (state, action) => {
+      console.log(action.payload);
       state.selected = true;
       state.type = "art";
       state.title = action.payload.title;
@@ -36,6 +37,8 @@ export const detailSelectorSlice = createSlice({
       state.images = action.payload.images;
     },
     setApp: (state, action) => {
+      // console.log("set app selector");
+
       state.selected = true;
       state.type = "app";
       state.title = action.payload.title;

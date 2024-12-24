@@ -18,7 +18,9 @@ const ProjectList = (props) => {
   return (
     <div className="projectList">
       {projectList ? (
-        projectList.map((p) => <p>{p.title}</p>)
+        projectList.map((p) => (
+          <ArtCard title={p.title} image={p.images[0]} project={p} />
+        ))
       ) : (
         <p>not loaded</p>
       )}
