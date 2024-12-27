@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Button, ButtonGroup } from "react-bootstrap";
 import {
   selectArt,
   selectApp,
   selectList,
-  selectDetail,
-  selectAdmin,
+  // selectDetail,
+  // selectAdmin,
 } from "./features/viewSelectorSlice/viewSelectorSlice";
 import { populateList } from "./features/projectListSelectorSlice/projectListSelectorSlice";
 import "./App.css";
@@ -15,7 +16,6 @@ import ProjectList from "./Components/ProjectList/ProjectList";
 import Admin from "./Components/Admin/Admin";
 import ProjectDetails from "./Components/ProjectList/ArtCard/ProjectDetails/ProjectDetails";
 import Header from "./Components/Header/Header";
-import { Button, ButtonGroup } from "react-bootstrap";
 
 const App = () => {
   // const [artworkList, setArtworkList] = useState([]);
@@ -78,22 +78,22 @@ const App = () => {
     dispatch(selectList());
   };
 
-  const toggleAdmin = () => {};
+  // const toggleAdmin = () => {};
 
-  const DisplayProjects = (props) => {
-    const appList = useSelector(
-      (state) => state.projectListSelector.app_projects
-    );
-    const artList = useSelector((state) => state.projectListSelector.artwork);
-    const viewState = useSelector((state) => state.viewSelector.view);
-    const modeState = useSelector((state) => state.viewSelector.mode);
+  // const DisplayProjects = (props) => {
+  //   const appList = useSelector(
+  //     (state) => state.projectListSelector.app_projects
+  //   );
+  //   const artList = useSelector((state) => state.projectListSelector.artwork);
+  //   const viewState = useSelector((state) => state.viewSelector.view);
+  //   const modeState = useSelector((state) => state.viewSelector.mode);
 
-    return (
-      <>
-        <div>display projects</div>
-      </>
-    );
-  };
+  //   return (
+  //     <>
+  //       <div>display projects</div>
+  //     </>
+  //   );
+  // };
 
   const checkMode = () => {
     if (viewState === "Admin") {
@@ -110,7 +110,7 @@ const App = () => {
   }, [mode]);
 
   return (
-    <div className="App">
+    <div className="App rootApp">
       <div className="container">
         <div className="row">
           <Header />

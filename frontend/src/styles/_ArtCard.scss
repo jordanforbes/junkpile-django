@@ -1,0 +1,19 @@
+@import "./ProjectDetails/ProjectDetails.scss";
+
+.artBtn {
+  all: unset;
+  display: block;
+  float: left;
+  cursor: pointer;
+}
+
+.imageContainer {
+  width: 400px; /* Width of the portion you want to display */
+  height: 400px; /* Height of the portion you want to display */
+  overflow: hidden; /* Ensures only the part of the image inside the container is visible */
+  position: relative;
+}
+
+.imageContainer:hover {
+  filter: brightness(0.9) saturate(0.9); /* Lighter and less saturated */
+}
