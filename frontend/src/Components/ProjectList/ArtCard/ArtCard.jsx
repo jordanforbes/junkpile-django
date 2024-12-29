@@ -6,6 +6,7 @@ import {
   getDetails,
 } from "../../../features/detailSelectorSlice/detailSelectorSlice";
 import { selectDetail } from "../../../features/viewSelectorSlice/viewSelectorSlice";
+import styles from "./ArtCard.module.css";
 
 const ArtCard = (props) => {
   const dispatch = useDispatch();
@@ -23,8 +24,8 @@ const ArtCard = (props) => {
 
   return (
     <div>
-      <button onClick={setDetails} className="artBtn">
-        <div className="imageContainer">
+      <button onClick={setDetails} className={styles.artBtn}>
+        <div className={styles.imageContainer}>
           <img
             key={props.image.id}
             src={props.image.image}

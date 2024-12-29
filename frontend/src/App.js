@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, ButtonGroup } from "react-bootstrap";
+import { Button, ButtonGroup, Container, Row, Col } from "react-bootstrap";
 import {
   selectArt,
   selectApp,
@@ -16,6 +16,7 @@ import ProjectList from "./Components/ProjectList/ProjectList";
 import Admin from "./Components/Admin/Admin";
 import ProjectDetails from "./Components/ProjectList/ArtCard/ProjectDetails/ProjectDetails";
 import Header from "./Components/Header/Header";
+import Navibar from "./Components/Navibar/Navibar";
 
 const App = () => {
   // const [artworkList, setArtworkList] = useState([]);
@@ -78,23 +79,6 @@ const App = () => {
     dispatch(selectList());
   };
 
-  // const toggleAdmin = () => {};
-
-  // const DisplayProjects = (props) => {
-  //   const appList = useSelector(
-  //     (state) => state.projectListSelector.app_projects
-  //   );
-  //   const artList = useSelector((state) => state.projectListSelector.artwork);
-  //   const viewState = useSelector((state) => state.viewSelector.view);
-  //   const modeState = useSelector((state) => state.viewSelector.mode);
-
-  //   return (
-  //     <>
-  //       <div>display projects</div>
-  //     </>
-  //   );
-  // };
-
   const checkMode = () => {
     if (viewState === "Admin") {
       setMode(<Admin />);
@@ -110,33 +94,22 @@ const App = () => {
   }, [mode]);
 
   return (
-    <div className="App rootApp">
-      <div className="container">
-        <div className="row">
-          <Header />
-        </div>
-        <div className="row">
-          <div className="col-md-3"></div>
-          <div className="col-md-6">
-            <ButtonGroup>
-              <Button
-                onClick={toggleArt}
-                className="mx-2 d-inline-block btn btn-primary float-left"
-              >
-                Art
-              </Button>
-              <Button
-                onClick={toggleApps}
-                className="mx-2 d-inline-block btn btn-primary  float-left"
-              >
-                Apps
-              </Button>
-            </ButtonGroup>
-          </div>
-          <div className="row">{mode}</div>
-        </div>
-      </div>
-      <div className="col-md-3"></div>
+    <div className="App  ">
+      <Container className="">
+        <Row>
+          <Col />
+          <Col md={10}>
+            <Navibar />
+            <Header />
+          </Col>
+          <Col />
+        </Row>
+        <Row>
+          <Col />
+          <Col md={10}>{mode}</Col>
+          <Col />
+        </Row>
+      </Container>
     </div>
   );
 };

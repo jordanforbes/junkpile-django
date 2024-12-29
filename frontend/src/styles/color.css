@@ -1,0 +1,8 @@
+:root {
+  /* backgroundcolor */
+  --color1: white;
+  /* headercolor */
+  --color2: black;
+  /* headercolor hover */
+  --color2hover: gray;
+}

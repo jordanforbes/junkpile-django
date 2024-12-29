@@ -1,7 +1,6 @@
-import ArtCard from "./ArtCard/ArtCard.jsx";
+import ArtCard from "../Components/ProjectList/ArtCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import styles from "./ProjectList.module.css";
 
 const ProjectList = (props) => {
   const appList = useSelector(
@@ -13,9 +12,12 @@ const ProjectList = (props) => {
 
   const projectList =
     viewState === "Art" ? artList : viewState === "App" ? appList : [];
-
+  useEffect(() => {
+    console.log("artlist", artList);
+  });
   return (
-    <div className={styles.coverItem}>
+    <div className="projectList">
+      <p>page</p>
       {projectList ? (
         projectList.map((p) => (
           <ArtCard title={p.title} image={p.images[0]} project={p} />
