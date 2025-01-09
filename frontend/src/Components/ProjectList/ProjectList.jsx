@@ -15,10 +15,10 @@ const ProjectList = (props) => {
     viewState === "Art" ? artList : viewState === "App" ? appList : [];
 
   return (
-    <div className={styles.coverItem}>
+    <div className={styles.artGallery}>
       {projectList ? (
         projectList.map((p) => (
-          <ArtCard title={p.title} image={p.images[0]} project={p} />
+          <ArtCard key={p.id} title={p.title} image={p.images[0]} project={p} />
         ))
       ) : (
         <p>not loaded</p>

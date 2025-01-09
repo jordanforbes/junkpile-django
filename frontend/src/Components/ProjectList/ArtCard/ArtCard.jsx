@@ -7,12 +7,13 @@ import {
 } from "../../../features/detailSelectorSlice/detailSelectorSlice";
 import { selectDetail } from "../../../features/viewSelectorSlice/viewSelectorSlice";
 import styles from "./ArtCard.module.css";
+import { motion } from "motion/react";
 
 const ArtCard = (props) => {
   const dispatch = useDispatch();
   const viewState = useSelector((state) => state.viewSelector.view);
-  const modeState = useSelector((state) => state.viewSelector.mode);
-  const projectState = useSelector((state) => state.detailSelector);
+  // const modeState = useSelector((state) => state.viewSelector.mode);
+  // const projectState = useSelector((state) => state.detailSelector);
 
   const setDetails = () => {
     viewState === "Art"
@@ -23,19 +24,23 @@ const ArtCard = (props) => {
   };
 
   return (
-    <div>
-      <button onClick={setDetails} className={styles.artBtn}>
+    <button onClick={setDetails} className={styles.artBtn}>
+      <motion.div
+        layout
+        initial={{ opacity: 0, x: 0, y: 10 }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
+        transition={{ duration: 1 }}
+      >
         <div className={styles.imageContainer}>
           <img
             key={props.image.id}
             src={props.image.image}
-            style={{ maxWidth: "400px" }}
             alt="project"
+            loading="lazy"
           />
         </div>
-        {/* <p>{props.title}</p> */}
-      </button>
-    </div>
+      </motion.div>
+    </button>
   );
 };
 

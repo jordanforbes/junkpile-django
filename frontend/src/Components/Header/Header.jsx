@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
+import Navibar from "../Navibar/Navibar";
 import Sparkle from "react-sparkle";
 import {
   selectArt,
@@ -19,18 +20,25 @@ const Header = () => {
   };
   return (
     <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="headerBox "
+      // onMouseEnter={() => setIsHovered(true)}
+      // onMouseLeave={() => setIsHovered(false)}
+      className={styles.headerBox}
     >
-      <h1 className={styles.headerName}>Jordan Forbes</h1>
-      {isHovered ? (
-        <Sparkle count={100} minSize={10} maxSize={20} overflowPx={0} />
-      ) : (
-        ""
-      )}
+      <h1
+        className={styles.headerName}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        Jordan Forbes
+        {isHovered ? (
+          <Sparkle count={100} minSize={10} maxSize={20} overflowPx={0} />
+        ) : (
+          ""
+        )}
+      </h1>
       {/* <br />
       <button onClick={toggleAdmin}>Admin</button> */}
+      <Navibar className={styles.navibarheader} />
     </div>
   );
 };

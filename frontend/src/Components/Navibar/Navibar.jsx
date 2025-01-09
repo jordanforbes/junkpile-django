@@ -24,12 +24,16 @@ const Navibar = () => {
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
-        <Container>
+        <Container fluid>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="justify-content-center w-100">
               <Nav.Link onClick={toggleArt}>Artwork</Nav.Link>
               <Nav.Link onClick={toggleApps}>Apps</Nav.Link>
+              <Nav.Link href="https://soundcloud.com/dirkdammit">
+                Music
+              </Nav.Link>
+              <Nav.Link href="https://shonenflop.com">Podcast</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

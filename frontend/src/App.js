@@ -12,11 +12,12 @@ import { populateList } from "./features/projectListSelectorSlice/projectListSel
 import "./App.css";
 import "./styles/styles.css";
 import axios from "axios";
+import { motion } from "motion/react";
 import ProjectList from "./Components/ProjectList/ProjectList";
 import Admin from "./Components/Admin/Admin";
 import ProjectDetails from "./Components/ProjectList/ArtCard/ProjectDetails/ProjectDetails";
 import Header from "./Components/Header/Header";
-import Navibar from "./Components/Navibar/Navibar";
+// import xmlJs from "xml-js";
 
 const App = () => {
   // const [artworkList, setArtworkList] = useState([]);
@@ -24,62 +25,56 @@ const App = () => {
   const [data, setData] = useState([]);
   const [artworkData, setArtworkData] = useState([]);
   const [appProjectData, setAppProjectData] = useState([]);
+  // const [podcastData, setPodcastData] = useState([]);
   const dispatch = useDispatch();
   const viewState = useSelector((state) => state.viewSelector.view);
   const modeState = useSelector((state) => state.viewSelector.mode);
   const [mode, setMode] = useState([]);
 
   // grab data from api and set it to the state
-  useEffect(() => {
-    const fetchData = () => {
-      axios
-        .get("http://localhost:8000/api/artwork/")
-        .then((res) => {
-          console.log("artwork", res.data);
-          setArtworkData(res.data);
-        })
-        .catch((e) => {
-          console.error("Error fetching data", e);
-        });
+  const fetchData = (url, hook) => {
+    axios
+      .get(url)
+      .then((res) => {
+        // console.log("artwork", res.data);
+        hook(res.data);
+      })
+      .catch((e) => {
+        console.error("Error fetching data", e);
+      });
+  };
 
-      axios
-        .get("http://localhost:8000/api/app_projects/")
-        .then((res) => {
-          console.log("app project", res.data);
-          setAppProjectData(res.data);
-        })
-        .catch((e) => {
-          console.error("Error fetching data", e);
-        });
-    };
-    fetchData();
+  useEffect(() => {
+    fetchData("http://localhost:8000/api/artwork/", setArtworkData);
+    fetchData("http://localhost:8000/api/app_projects/", setAppProjectData);
   }, []);
 
   useEffect(() => {
-    setData({
+    const newData = {
       app_project: appProjectData,
       artwork: artworkData,
-    });
-    console.log("full data", data);
+    };
+    setData(newData);
+    // console.log("full data", data);
   }, [artworkData, appProjectData]);
 
   useEffect(() => {
-    console.log("data", data);
+    // console.log("data", data);
     if (data) {
       dispatch(populateList(data));
     }
   }, [data]);
 
-  const toggleArt = () => {
-    dispatch(selectArt());
-    dispatch(selectList());
-  };
-  const toggleApps = () => {
-    dispatch(selectApp());
-    dispatch(selectList());
-  };
+  // const toggleArt = () => {
+  //   dispatch(selectArt());
+  //   dispatch(selectList());
+  // };
+  // const toggleApps = () => {
+  //   dispatch(selectApp());
+  //   dispatch(selectList());
+  // };
 
-  const checkMode = () => {
+  useEffect(() => {
     if (viewState === "Admin") {
       setMode(<Admin />);
     } else if (modeState === "List") {
@@ -87,26 +82,23 @@ const App = () => {
     } else if (modeState === "Detail") {
       setMode(<ProjectDetails />);
     }
-  };
-
-  useEffect(() => {
-    checkMode();
-  }, [mode]);
+  }, [viewState, modeState]);
 
   return (
     <div className="App  ">
-      <Container className="">
+      <Container>
         <Row>
           <Col />
           <Col md={10}>
-            <Navibar />
             <Header />
           </Col>
           <Col />
         </Row>
         <Row>
           <Col />
+
           <Col md={10}>{mode}</Col>
+
           <Col />
         </Row>
       </Container>

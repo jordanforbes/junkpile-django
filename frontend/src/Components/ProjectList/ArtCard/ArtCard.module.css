@@ -1,6 +1,6 @@
 /* @import "./ProjectDetails/ProjectDetails.scss"; */
 
-.artBtn {
+/* .artBtn {
   all: unset;
   display: block;
   float: left;
@@ -17,4 +17,28 @@
 
 .imageContainer:hover {
   filter: brightness(0.9) saturate(0.9);
+} */
+
+.artBtn {
+  all: unset; /* Resets default button styles */
+  display: inline-block; /* Aligns buttons side by side */
+  cursor: pointer;
+  margin: 0.5%; /* Space between buttons */
+}
+
+.imageContainer {
+  width: 400px; /* Reserve fixed space for images */
+  height: 400px;
+  overflow: hidden; /* Prevent images from exceeding bounds */
+  position: relative;
+}
+
+.imageContainer img {
+  width: 100%; /* Ensure the image fills the container width */
+  height: 100%; /* Stretch to fill height */
+  object-fit: cover; /* Maintains aspect ratio without distortion */
+}
+
+.imageContainer:hover {
+  filter: brightness(0.9) saturate(0.9); /* Hover effect */
 }
